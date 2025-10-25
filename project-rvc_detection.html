@@ -1,0 +1,338 @@
+<!DOCTYPE HTML>
+<!--
+	Forty by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+	<title>Visal Dam - Real-time Detection of RVC-based DeepFaked Audio</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<noscript>
+		<link rel="stylesheet" href="assets/css/noscript.css" />
+	</noscript>
+</head>
+
+<body class="is-preload">
+
+	<!-- Wrapper -->
+	<div id="wrapper">
+
+		<!-- Header -->
+		<header id="header">
+			<a href="index.html" class="logo"><strong>Visal Dam</strong> <span>Portfolio</span></a>
+			<nav>
+				<a href="#menu">Menu</a>
+			</nav>
+		</header>
+
+		<!-- Menu -->
+		<nav id="menu">
+			<ul class="links">
+				<li><a href="index.html">Home</a></li>
+				<li><a href="portfolio-about.html">About</a></li>
+				<li><a href="portfolio-selected_projects.html">Selected Projects</a></li>
+				<li><a href="elements.html">Elements</a></li>
+			</ul>
+			<ul class="actions stacked">
+				<li><a href="#" class="button primary fit">Get Started</a></li>
+				<li><a href="#" class="button fit">Log In</a></li>
+			</ul>
+		</nav>
+		.
+		<!-- Main -->
+		<div id="main" class="alt">
+
+			<!-- One -->
+			<section id="one">
+				<div class="inner">
+					<header class="major">
+						<h1>Real-time Detection of RVC-based DeepFaked Audio</h1>
+						<p>September 2025</p>
+					</header>
+					<figure>
+						<span class="image main"><img src="images/rvc_fig-system.png" alt="" />
+							<figcaption>Figure 1: Proposed detection system from <a
+									href="https://doi.org/10.48550/arxiv.2308.12734">[1]</a>.</figcaption>
+						</span>
+					</figure>
+					<p>This was an independent project and based on the work of Bird & Lotfi <a
+							href="https://doi.org/10.48550/arxiv.2308.12734">[1]</a>.
+						This page presents a brief technical overview of the project. Please read the report <a
+									href="reports/Visal Dam - rvc_detection.pdf">here</a> for more information.
+					</p>
+					<h2>Background</h2>
+					<p>
+					<figure>
+						<span class="image left"><img src="images/rvc_explanation.png" alt="" />
+							<figcaption>Figure 2: Overview of RVC from <a
+									href="https://doi.org/10.48550/arxiv.2308.12734">[1]</a>.</figcaption>
+						</span>
+					</figure>
+					Voice conversion is a popular area in speech synthesis and is
+					aimed at separating the content features (what is spoken) from
+					the speaker features (how it is spoken). A voice model first disentangles the linguistic content
+					from acoustic characteristics such
+					as timbre, pitch, and tone. Deep learning methods, such as
+					HuBERT and ContentVec, are commonly used to extract
+					these high-level feature representations. An acoustic model then
+					recreates the target speaker by applying the extracted features on
+					given content.
+					</p>
+					<p>
+						Retrieval-based Voice Conversion (RVC) extends this process
+						by using a retrieval mechanism to enhance the converted voice qual
+						ity. During the training process, RVC stores the target speaker’s
+						acoustic feature representations, and the highly-relevant ones are
+						retrieved during runtime to guide the inference process. Essentially, the similarity between the
+						speech features of the target and
+						the given speaker allows the model to more accurately reconstruct
+						the target speaker’s timbre and vocal characteristics, while preserving the linguistic content,
+						prosody, and style of the given speaker.
+						RVC is designed to be deployed in real-time, such as via the <a
+							href="https://github.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI">RVC
+							Web GUI</a>. An overview of the RVC process is presented in Figure
+						2.</p>
+					<h2>Objective</h2>
+					<p>
+						The ability to impersonate one's voice as another is an obvious threat
+						to security, privacy, and integrity, especially when combined with real-time
+						usage. Hence, the goal of this project is to use Machine Learning to
+						detect the likelihood of RVC-based synthetic speech in real-time. Both detection capability and
+						inference time (as well as feature processing time)
+						are key metrics of efficient model performance in real-time pipelines; thus,
+						classical statistical classifiers (kNN, SVMs, RandomForest, etc.) are chosen
+						for this study.
+					</p>
+					<h2>Methodology</h2>
+					<h3>Voice Conversion</h3>
+					<p>
+					<figure>
+						<span class="image right"><img src="images/rvc_voices.png" alt="" />
+							<figcaption>Table 1: Speakers.</figcaption>
+						</span>
+					</figure>
+					A small custom dataset is created consisting of 10 individuals. 5 of them were sourced from <a
+						href="https://doi.org/10.48550/arxiv.2308.12734">[1]</a>,
+					the rest were
+					sourced from YouTube and converted into .wav format. Their RVC (ver. 2) models were sourced from
+					<a href="https://huggingface.co/models?other=rvc"> HuggingFace</a>. Audios
+					were truncated to 10 minutes if longer. This is detailed in Table 1. Both male and female
+					speakers were used, spanning
+					a range of public exposure, personas, and occupations (presidents, YouTubers, celebrities,
+					etc.). Some audio are clean (just speech),
+					whereas others are noisy (background music, applause, etc.). These were deliberate choices to
+					increase the realism of the dataset.
+					</p>
+
+					<p>
+						The 10 RVC models, each an individual speaker, are fed audio of the other 9. This results in 90
+						fake audio files.
+						Random undersampling is used to combat imbalance, resulting in a 1:1 ratio with the real speech.
+						See below some examples of real
+						and fake audios.
+					</p>
+
+					<h4>Examples</h4>
+
+					<table>
+						<thead>
+							<tr>
+								<th>Real Audio</th>
+								<th>Fake Audio</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td rowspan="2">
+									<audio controls>
+										<source src="media/gura-original.wav" type="audio/wav">
+										Your browser does not support the audio element.
+									</audio>
+									<p>Source: <a href="https://youtu.be/ogsmJIGb3QM?si=KTAdma4dyq7ZKwdu">Gura’s
+											Excellent Pep Talk</a></p>
+								</td>
+								<td>
+									<audio controls>
+										<source src="media/gura-pewdiepie.wav" type="audio/wav">
+										Your browser does not support the audio element.
+									</audio>
+									<p>Model: <a href="https://huggingface.co/sail-rvc/pewdiepie_e100_s1000">PewDiePie</a></p>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<audio controls>
+										<source src="media/gura-obama.wav" type="audio/wav">
+										Your browser does not support the audio element.
+									</audio>
+									<p>Model: <a href="https://huggingface.co/sail-rvc/obama">Barack Obama</a></p>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<h3>Feature Extraction</h3>
+					<p>
+						To enable real-time extraction, 1-second blocks of audio are treated as entire frames for
+						feature extraction, with a hop (in seconds) of 63% of the sampling rate.
+						librosa is used to extract the following features:
+					</p>
+					<div class="table-wrapper">
+						<table>
+							<thead>
+								<tr>
+									<th>Feature</th>
+									<th>Significance</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Chromagram (12 bands)</td>
+									<td>Captures pitch changes (each band = a note in the Western musical scale) - useful for when speech and ambience
+										are mixed.</td>
+								</tr>
+								<tr>
+									<td>Spectral Centroid</td>
+									<td>Represents the "brightness" or sharpness of the sound — higher values indicate
+										more energy in high frequencies, useful for detecting timbre changes.</td>
+								</tr>
+								<tr>
+									<td>Spectral Bandwidth</td>
+									<td>Measures the spread of frequencies around the centroid — wide bandwidth suggests
+										richer or noisier textures, narrow bandwidth indicates purer tones.</td>
+								</tr>
+								<tr>
+									<td>Root Mean Square (RMS)</td>
+									<td>Reflects the perceived loudness of the signal — higher RMS values indicate
+										stronger energy and volume.</td>
+								</tr>
+								<tr>
+									<td>Spectral Rolloff</td>
+									<td>Marks the frequency below which a given percentage (typically 85%) of total
+										spectral energy lies — useful for differentiating voiced and unvoiced sounds.
+									</td>
+								</tr>
+								<tr>
+									<td>Zero Crossing Rate (ZCR)</td>
+									<td>Counts how frequently the signal changes sign — higher rates suggest noisier or
+										more percussive sounds, while lower rates indicate smoother tones.</td>
+								</tr>
+								<tr>
+									<td>MFCC (20)</td>
+									<td>Mel-Frequency Cepstral Coefficients capture the overall shape of the spectral
+										envelope — fundamental for identifying speaker characteristics and vocal timbre.
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<h3>Machine Learning</h3>
+					<p>
+						Selected for this study are the following statistical classifiers: XGBoost, Random Forest, Light
+						Gradient-Boosting Machine (LightBGM), CatBoost, SVM, SGD, Logistic Regression, and Ridge
+						Regression (all sourced from sklearn). Hyperparamaterization and 10-fold
+						training is employed, and the best overall performer is evaluated.
+					</p>
+					<p>
+						In addition to traditional metrics (accuracy, precision-recall), the models were
+						also evaludated based on the Matthews Correlation Coefficient (MCC) and Receiver Operating
+						Characteristic Area Under the Curve (ROC-AUC).
+					</p>
+					<h2>Results</h2>
+					<figure>
+						<span class="image main"><img src="images/rvc_table-model_perfs.png" alt="" />
+							<figcaption>Table 2: Averaged validation metrics.</figcaption>
+						</span>
+					</figure>
+					<p>
+					<figure>
+						<span class="image right"><img src="images/rvc_fig-feature_extraction.png" alt="" />
+							<figcaption>Figure 3: Box plot of averaged feature extraction time.</figcaption>
+						</span>
+					</figure>
+					<figure>
+						<span class="image right"><img src="images/rvc_table-model_inf_time.png" alt="" />
+							<figcaption>Table 3: Averaged inference time per model.</figcaption>
+						</span>
+					</figure>
+
+					Overall, XGBoost was found to be the best overall performer in terms of both accuracy and
+					inference time.
+					While SVC had the highest accuracy, it has a greater inference time, as well as requires the
+					features to be scaled
+					for maximum accuracy.
+					</p>
+					<p>
+						Combined with the average feature extraction time, each 1-second block takes on average 0.164 ±
+						0.03s to process,
+						thus a rate of 5 to 7 blocks-per-second is achieved.
+					</p>
+
+					<h2>Discussion</h2>
+					<figure>
+						<span class="image main"><img src="images/rvc_fig-pca.png" alt="" />
+							<figcaption>Figure 4: PCA-based feature correlation.</figcaption>
+						</span>
+					</figure>
+					<figure>
+						<span class="image left"><img src="images/rvc_fig-pcc.png" alt="" />
+							<figcaption>Figure 5: PCC-based feature importance</figcaption>
+						</span>
+					</figure>
+					<p>
+						To better differentiate this work from <a
+							href="https://doi.org/10.48550/arxiv.2308.12734">[1]</a>, in addition to the
+						Pearson’s Correlation Coefficient (PCC), I also used the Principal
+						Component Analysis (PCA) to observe the correlation of features
+						and classes of the generated dataset. The sorted PCC-based feature correlation is presented in
+						Figure 5, where the points in orange
+						represent the absolute value of the magnitude of correlation, with
+						REAL = 0 and FAKE = 1. We see that the highest correlation magnitudes between feature and class
+						is shown to be the 2nd
+						MFCC, with a PCC of 0.35. The same observation was made in
+						<a href="https://doi.org/10.48550/arxiv.2308.12734">[1]</a>, though with a PCC of 0.36.
+					</p>
+					<p>
+						Interestingly, the 2nd MFCC is the lowest when considering
+						its original negative (blue) values. This suggests that it is the
+						strongest indicator of the REAL class. The highest correlation
+						would therefore be attributed to the Spectral Bandwidth, with a
+						PCC of 0.28, thereby being the strongest indicator of the FAKE
+						class.
+					</p>
+
+					<h2>References</h2>
+					<p>[1] J. J. Bird and A. Lotfi, “Real-time
+						Detection of AI-Generated Speech for DeepFake Voice
+						Conversion”, arXiv (Cornell University), Aug. 2023, doi:
+						<a href="https://doi.org/10.48550/arxiv.2308.12734">https://doi.org/10.48550/arxiv.2308.12734</a>.</p>
+				</div>
+			</section>
+
+		</div>
+
+		<!-- Footer -->
+		<footer id="footer">
+			<script src="assets/js/load.footer.js"></script>
+		</footer>
+
+	</div>
+
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.scrolly.min.js"></script>
+	<script src="assets/js/jquery.scrollex.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+
+
+</body>
+
+</html>
