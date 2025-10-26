@@ -115,6 +115,10 @@ input, select, textarea {
   margin: 0 auto 1em;
 }
 
+#message {
+    resize: none;  
+}
+
 /* Basic */
 
 	@-ms-viewport {
