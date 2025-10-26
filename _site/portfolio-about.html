@@ -1,7 +1,3 @@
----
-title: About
----
-
 <!DOCTYPE HTML>
 <!--
 	Forty by HTML5 UP
@@ -11,7 +7,16 @@ title: About
 <html>
 
 <!-- Head -->
-{% include head.html %}
+<head>
+	<title>About</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<noscript>
+		<link rel="stylesheet" href="assets/css/noscript.css" />
+	</noscript>
+	<link rel="icon" type="image/png" href="images/plum_blossom.png" />
+</head>
 
 <body class="is-preload">
 
@@ -19,10 +24,27 @@ title: About
 	<div id="wrapper">
 
 		<!-- Header -->
-		{% include header.html %}
+		<header id="header" class="alt style2">
+    <a href="index.html" class="logo"><strong>Visal Dam</strong> <span>Portfolio</span></a>
+    <nav>
+        <a href="#menu">Menu</a>
+    </nav>
+</header>
 
 		<!-- Menu -->
-		{% include menu.html %}
+		<nav id="menu">
+    <ul class="links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="portfolio-about.html">About</a></li>
+        <li><a href="portfolio-selected_projects.html">Selected Projects</a></li>
+        <li><a href="landing.html">Publications</a></li>
+        <li><a href="landing.html">Awards</a></li>
+        <li><a href="landing.html">Other</a></li>
+    </ul>
+    <ul class="actions stacked">
+        <li><a href="index.html#contact" class="button fit">Contact</a></li>
+    </ul>
+</nav>
 
 		<!-- Main -->
 		<div id="main" class="alt">
@@ -93,7 +115,21 @@ title: About
 		</div>
 
 		<!-- Footer -->
-		{% include footer.html %}
+		<footer id="footer">
+  <div class="inner">
+    <ul class="icons">
+      <li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
+      <li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
+      <li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+      <li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+      <li><a href="#" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+    </ul>
+    <ul class="copyright">
+      <li>© 2025 Visal Dam</li>
+      <li>Design adapted from: <a href="https://html5up.net">HTML5 UP</a></li>
+    </ul>
+  </div>
+</footer>
 
 	</div>
 
