@@ -116,9 +116,9 @@ input, select, textarea {
 }
 
 .button.fit {
-	display: inline-block;           /* ensures transform works */
-	overflow: visible;               /* allow zoom outside container */
-	transform-origin: center center; /* zoom from center */
+	display: inline-block;           
+	overflow: visible;              
+	transform-origin: center center; 
 	transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
@@ -3036,9 +3036,9 @@ input, select, textarea {
 
 				/* Hover effect: slightly zoom in and brighten */
 				.spotlights > section > .image:hover img {
-					transform: scale(1.01); /* zoom in 5% */
-					filter: brightness(1); /* slightly brighter */
-					cursor: pointer; /* indicate interactivity */
+					transform: scale(1.01); /* ZOOM */
+					filter: brightness(1); 
+					cursor: pointer; 
 				}
 
 				.spotlights > section > .image:before {
