@@ -115,10 +115,6 @@ input, select, textarea {
   margin: 0 auto 1em;
 }
 
-#message {
-    resize: none;  
-}
-
 /* Basic */
 
 	@-ms-viewport {
@@ -1974,6 +1970,7 @@ input, select, textarea {
 		padding: 0 1em;
 		text-decoration: none;
 		width: 100%;
+		resize: none;
 	}
 
 		input[type="text"]:invalid,
