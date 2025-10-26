@@ -77,9 +77,10 @@ input, select, textarea {
 .infobox{
   border: 2px solid #aaa;
   padding: 16px;
-  width: 500px;
+  width: 100%;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-size: 20px;
+  display: block;
 }
 
 .infobox table {
@@ -227,6 +228,10 @@ input, select, textarea {
 		font-weight: 600;
 		line-height: 1.65;
 		margin: 0 0 1em 0;
+		overflow: visible; /*IMPORTANT*/
+		white-space: normal;
+		word-wrap: break-word;
+		max-width: 100%;
 	}
 
 		h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
@@ -1817,6 +1822,9 @@ input, select, textarea {
 		width: -ms-max-content;
 		width: max-content;
 		margin-bottom: 2em;
+		white-space: normal; /* IMPORTANT: text wrapping!*/
+  		word-wrap: break-word; 
+  		max-width: 100%; 
 	}
 
 		header.major > :first-child {
