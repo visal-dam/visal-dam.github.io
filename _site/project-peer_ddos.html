@@ -1,0 +1,290 @@
+<!DOCTYPE HTML>
+<!--
+	Forty by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<!-- Head -->
+<head>
+	<title>Projects | Peer-based DDoS Protection in SDNs</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<noscript>
+		<link rel="stylesheet" href="assets/css/noscript.css" />
+	</noscript>
+	<link rel="icon" type="image/png" href="images/plum_blossom.png" />
+</head>
+
+
+<body class="is-preload">
+
+	<!-- Wrapper -->
+	<div id="wrapper">
+
+		<!-- Header -->
+		<header id="header" class="alt style2">
+    <a href="index.html" class="logo"><strong>Visal Dam</strong> <span>Portfolio (WIP)</span></a>
+    <nav>
+        <a href="#menu">Menu</a>
+    </nav>
+</header>
+
+		<!-- Menu -->
+		<nav id="menu">
+    <ul class="links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="portfolio-about.html">About</a></li>
+        <li><a href="portfolio-selected_projects.html">Selected Projects</a></li>
+        <li><a href="landing.html">Publications</a></li>
+        <li><a href="landing.html">Awards</a></li>
+        <li><a href="landing.html">Other</a></li>
+    </ul>
+    <ul class="actions stacked">
+        <li><a href="#contact" class="button fit">Contact</a></li>
+    </ul>
+</nav>
+
+		<!-- Banner (Hidden) -->
+		<section id="banner" style="display:none;"></section>
+
+		<!-- Main -->
+		<div id="main" class="alt">
+
+			<!-- One -->
+			<section id="one">
+				<div class="inner">
+					<header class="major">
+						<h1>Peer-based DDoS Protection in SDNs</h1>
+						<p>September 2024</p>
+					</header>
+					<figure>
+						<span class="image main"><img src="images/peer_fig-mesh_banner.png" alt="" />
+							<figcaption>Figure 1: A mesh topology.</figcaption>
+						</span>
+					</figure>
+					<p>
+						This project is based off the work of Yuan et al. [1], and explores how empty flow tables of
+						neighboring switches can be used to increase a network's holding time against DDoS attacks.
+						Please refer to this <a href="reports/Visal Dam - peer_support_sdn.pdf"
+							target="_blank">report</a> for
+						a more detailed writeup of the project.</p>
+
+					<h2>Project Summary</h2>
+
+					<h3>Background</h3>
+
+					<section id="pics_layer_one">
+						<div class="inner">
+							<div class="row">
+								<div class="col-6 col-12-small">
+									<section class="split">
+										<figure>
+											<span class="image main"><img src="images/trad.png" alt="" />
+												<figcaption>Figure 2: Traditional networking.</figcaption>
+											</span>
+										</figure>
+										<figure>
+											<span class="image main"><img src="images/sdn_operation.png" alt="" />
+												<figcaption>Figure 4: Typical SDN operation.</figcaption>
+											</span>
+										</figure>
+									</section>
+								</div>
+								<div class="col-6 col-12-small">
+									<section class="split">
+										<p>In computer networks, data is transmitted as packets across
+											optimally-determined paths. Traditional
+											networks manage both packet forwarding and path determination within
+											the
+											same hardware device, such
+											as routers and switches, relying on various independent protocols
+											(ARP, STP,
+											OSPF, EIGRP, BGP, etc.)
+											to achieve different functions. This tight coupling hinders
+											scalability and
+											flexibility. Software-defined Networks (SDNs) address these
+											limitations by
+											decoupling the data plane
+											(packet forwarding) from the control
+											plane (path decision-making).
+										</p>
+										<figure>
+											<span class="image main"><img src="images/sdn-sdn.png" alt="" />
+												<figcaption>Figure 3: Software-defined networking.</figcaption>
+											</span>
+										</figure>
+									</section>
+								</div>
+							</div>
+					</section>
+
+					<p>Figure 4 presents a typical SDN operation in a switch for an arriving packet. The
+						controller
+						installs in that switch a flow rule,
+						which tells the switch what to do with that packet (based on extracted information). For
+						example, if the packet arrived at port 2 from host h2, destined to host h1 (which is
+						connected
+						to the switch at port 3), a flow rule is installed to send it along that port. This rule
+						has a
+						lifetime, say 15 seconds. If within those 15 seconds a similar packet (same origin,
+						destination)
+						arrived,
+						it is treated as per the active flow rule - the switch does not need to contact the
+						controller
+						anymore.
+					</p>
+
+					<p>Switches in an SDN uses Ternary Content-Addressable Memory (TCAM) registers for fast
+						lookups.
+						However, TCAM entries are limited due to its high costs and power consumption, usually
+						limited
+						to around 8000. An attacker could exhaust this limit by sending spoofed packets, each
+						with
+						unique details, triggering the creation of more flow rules than available space,
+						effectively
+						stalling the switch.
+					</p>
+
+					<h3>Solution</h3>
+					<p>[1] showed how the empty tables of nearby switches can offload incoming traffic of a
+						targeted
+						switch, assuming, of course, an average attacker and that only a single switch is being
+						targeted. For this to effectively work, the network should be mesh topology; i.e., every
+						switch
+						is connected directly to another. This project operates on the same principle, but the
+						implementation is my own.
+					</p>
+
+					<p>Firstly, we monitor the flow table of each switch. Two conditions should then be
+						satisfied:
+						<br />
+						1 - that the number of flows has exceeded a pre-defined limit, <br />
+						2 - that the rate of inbound packets has exceeded a pre-defined limit.
+					</p>
+
+					<p>Afterwards, we install a wildcard flow rule (i.e., for any new packet at all, do this ...) that
+						directs traffic to a nearby peer switch
+						with
+						sufficient flow capacity should they too become inundated. The same is done for every
+						switch.
+						Default flow rules triggered like this have a natural lifetime. The number of switches
+						in the
+						network is directly proportional to
+						how longer it can withhold an attack. Combined with the fact that each switch has a
+						direct
+						connection to every other, this method increases attack response times before the
+						network can be
+						stalled.
+					</p>
+
+					<p>This method seems very primitive, as it is a mere (though successful) proof-of-concept. An
+						attacker with normal resources will be exhausted using existing network power.
+						Defense systems can always refine it further. See the following graphs tracking the holding time
+						(defined as the time it takes for any one switch to have reached the maximum flow capacity) in a
+						network with and without the method.
+					</p>
+
+					<figure>
+						<span class="image main"><img src="images/wo_pss.png" alt="" />
+							<figcaption>Figure 5: Flow statistic for every switch without the Peer Support
+								Strategy (PSS).</figcaption>
+						</span>
+					</figure>
+					<figure>
+						<span class="image main"><img src="images/w_pss.png" alt="" />
+							<figcaption>Figure 6: Now with PSS, the holding time is increased.</figcaption>
+						</span>
+					</figure>
+					<figure>
+						<span class="image main"><img src="images/w_pss2.png" alt="" />
+							<figcaption>Figure 7: With a lower threshold, the holding time is greater.
+							</figcaption>
+						</span>
+					</figure>
+
+
+				</div>
+			</section>
+
+		</div>
+
+		<!-- Footer -->
+		<!-- Contact -->
+<section id="contact">
+  <div class="inner">
+    <section>
+      <h2>Contact</h2>
+      <div data-youform-embed data-form='qtdfjvuz' data-width='100%' data-height='700px'></div>
+    </section>
+    <section class="split">
+      <section>
+        <div class="contact-method">
+          <span class="icon solid alt fa-envelope"></span>
+          <h3>Email</h3>
+          <a href="mailto:visal.dam@deakin.edu.au">visal.dam@deakin.edu.au</a>
+        </div>
+      </section>
+      <section>
+        <div class="contact-method">
+          <span class="icon brands alt fa-linkedin-in"></span>
+          <h3>LinkedIn</h3>
+          <span><a href="https://linkedin.com/in/visal-dam" target="_blank">linkedin.com/in/visal-dam</a>↗</span>
+        </div>
+      </section>
+      <section>
+        <div class="contact-method">
+          <span class="icon solid alt fa-home"></span>
+          <h3>Address</h3>
+          <span>Melbourne, VIC</span>
+        </div>
+      </section>
+      <section>
+        <div class="contact-method">
+          <span class="icon solid alt fa-phone"></span>
+          <h3>Telephone</h3>
+          <span>Available upon request.</span>
+        </div>
+      </section>
+    </section>
+  </div>
+</section>
+
+<footer id="footer">
+  <div class="inner">
+    <ul class="icons">
+      <li><a href="https://github.com/visal-dam" target="_blank" class="icon brands alt fa-github"><span
+            class="label">GitHub</span></a></li>
+      <li><a href="https://linkedin.com/in/visal-dam" target="_blank" class="icon brands alt fa-linkedin-in"><span
+            class="label">LinkedIn</span></a></li>
+      <li><a href="https://experts.deakin.edu.au/65474-visal-dam" target="_blank" class="icon solid alt fa-user"><span
+            class="label">Staff</span></a></li>
+      <li><a href="https://orcid.org/0009-0006-3449-3167" target="_blank" class="icon brands alt fa-orcid"><span
+            class="label">ORCID</span></a></li>
+    </ul>
+    <ul class="copyright">
+      <li>© 2025 Visal Dam</li>
+      <li>Design adapted from: <a href="https://html5up.net" target="_blank">HTML5 UP</a>↗</li>
+    </ul>
+  </div>
+</footer>
+
+	</div>
+
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js" defer></script>
+<script src="assets/js/jquery.scrolly.min.js" defer></script>
+<script src="assets/js/jquery.scrollex.min.js" defer></script>
+<script src="assets/js/browser.min.js" defer></script>
+<script src="assets/js/breakpoints.min.js" defer></script>
+<script src="assets/js/util.js" defer></script>
+<script src="assets/js/main.js" defer></script>
+<!--contact form (YouForm)-->
+<script src="https://app.youform.com/embed.js" defer></script>
+
+
+</body>
+
+</html>
