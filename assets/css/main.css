@@ -2934,7 +2934,7 @@ input, select, textarea {
 			}
 
 			.tiles article:nth-child(6n - 3):before {
-				background-color: #ec8d81;
+				background-color: #d3737f;
 			}
 
 			.tiles article:nth-child(6n - 2):before {
@@ -3608,7 +3608,7 @@ input, select, textarea {
 		}
 
 		#banner.style3:after {
-			background-color: #ec8d81;
+			background-color: #d3737f; /*#ec8d81*/
 		}
 
 		#banner.style4:after {
