@@ -2237,6 +2237,8 @@ input, select, textarea {
 
 	a.icon.alt:hover:before {
 		background-color: #6fc3df;
+		transform: scale(1.1); /* ZOOM */
+		transition: transform 0.1s ease-in-out;
 	}
 
 	a.icon.alt:active:before {
