@@ -1,0 +1,151 @@
+---
+title: Projects | Policy Deployment Engine
+---
+
+<!DOCTYPE HTML>
+<!--
+	Forty by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<!-- Head -->
+{% include head.html %}
+
+<body class="is-preload">
+
+	<!-- Wrapper -->
+	<div id="wrapper">
+
+		<!-- Header -->
+		{% include header.html %}
+
+		<!-- Menu -->
+		{% include menu.html %}
+
+		<!-- Banner (Hidden) -->
+		<section id="banner" style="display:none;"></section>
+
+		<!-- Main -->
+		<div id="main" class="alt">
+
+			<!-- One -->
+			<section id="one">
+				<div class="inner">
+					<header class="major">
+						<h1>Policy Deployment Engine</h1>
+						<p>March - September 2025</p>
+					</header>
+					<figure>
+						<span class="image main"><img src="images/pde_fig-policy.png" alt="" />
+							<figcaption>Figure 1: Simple security policy.</figcaption>
+						</span>
+					</figure>
+					<p>
+						This group project was part of my university's capstone program. Our goal with the Policy
+						Deployment Engine (PDE) is
+						to audit cloud configurations prior to deployment to check for compliance. A series of policies
+						are authored and act as the "gateway"
+						to facilitate this.
+						Our project is the first of its kind at Deakin
+						University, initially aimed at GCP services.
+					</p>
+
+					<p>View the project on <a href="https://github.com/Hardhat-Enterprises/Policy-Deployment-Engine"
+							target="_blank">GitHub</a>↗!</p>
+
+					<h2>Project Summary</h2>
+
+					<h3>Background</h3>
+					<p>The Cloud is the backbone of modern organizations. Repeating cloud configurations for different
+						resources manually quickly becomes difficult, leading to the idea of Infrastructure-as-Code
+						(IAC). Frameworks such as <a href="https://www.terraform.io/" target="_blank">Terraform</a>↗
+						enable cloud configurations to be expressed as code, facilitating scalability.
+					</p>
+
+					<p>However, managing and auditing different cloud plans take time, so the initial problem is
+						still present. Manual audits can also introduce human error. Hence, the PDE operates between
+						what is planned and what is deployed, scanning resources with associated security policies. The
+						declarative language <a href="https://www.openpolicyagent.org/docs/policy-language"
+							target="_blank">Rego</a>↗, developed as the main query language in the <a
+							href="https://www.openpolicyagent.org/" target="_blank">Open Policy Agent
+						(OPA)</a>↗, is chosen to achieve this. After assessing
+						their assigned service and resources, members design their policies using our development
+						framework, and evaluate their correctness by scanning compliant and non-compliant Terraform
+						configurations.</p>
+
+					<p>For
+						example, a storage bucket resource should have the "force_delete" option disabled by default to
+						prevent accidentally data deletion. Though a simple example, when applied to different
+						resources, the PDE quickly becomes a powerful compliance-enforcing tool for cloud environments
+						via its library of security policies.</p>
+
+					<h3>Policy Development Framework (helpers.rego)</h3>
+					<p>A big problem stems from standardization. With 30 (and later, 60) members, how do we ensure that
+						policies are structured the same way project-wide? Without standardization, the following issues
+						arise: <br />
+						- inconsistent naming convention <br />
+						- lack of compatibility <br />
+						- difficulty in understanding or maintaining another person’s policy <br />
+						- duplicated logic across files <br />
+						- increased review time and confusion. <br />
+					</p>
+					<p>Worse still, each member would need to be well-versed in Rego to implement needed functions. To
+						address these concerns, I developed the helpers.rego, a suite of functions to aid in developing
+						policies; i.e.,
+						it is our project's custom library for policy development. Working and maintaining the
+						codebase alongside another lead,
+						the helpers.rego supports policy development that requires: white/blacklisting, range checks,
+						pattern checks, IF-logic, and AND-logic. Most importantly, members only need to focus on the
+						security-aspect
+						of the project, i.e., accessing their assigned GCP service and its resources, with the
+						nitty-gritty of Rego left
+						to the development team.
+						I also standardized the project's current templates and conventions to do with file and folder
+						structuring.
+					</p>
+
+					<p>See the below for more information about the helpers.rego, namely the documentation (<a
+							href="https://hardhat-enterprises.github.io/Policy-Deployment-Engine/docs/gcp/helpers/helpers">reflected</a>↗)
+						and raw source code.</p>
+					<section id="helpers">
+						<div class="inner">
+							<div class="row">
+								<div class="col-6 col-12-small">
+									<iframe
+										src="https://hardhat-enterprises.github.io/Policy-Deployment-Engine/docs/gcp/helpers/helpers"
+										width="100%" height="600" style="border:1px solid #ffffff;">
+										Your browser does not support iframes. You can access the documentation <a
+											href="https://hardhat-enterprises.github.io/Policy-Deployment-Engine/docs/gcp/helpers/helpers"
+											target="_blank">here</a> instead.
+									</iframe>
+								</div>
+								<div class="col-6 col-12-small">
+									<iframe src="others/project-pde-helpers.html" width="100%" height="600px"
+										style="border:1px solid #ffffff;">
+										Your browser does not support iframes.
+									</iframe>
+								</div>
+							</div>
+						</div>
+					</section>
+
+
+				</div>
+			</section>
+
+		</div>
+
+		<!-- Footer -->
+		{% include footer.html %}
+
+	</div>
+
+	<!-- Scripts -->
+	{% include scripts.html %}
+
+
+</body>
+
+</html>

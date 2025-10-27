@@ -1,0 +1,229 @@
+<!DOCTYPE HTML>
+<!--
+	Forty by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<!-- Head -->
+<head>
+	<title>Projects | Policy Deployment Engine</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<noscript>
+		<link rel="stylesheet" href="assets/css/noscript.css" />
+	</noscript>
+	<link rel="icon" type="image/png" href="images/plum_blossom.png" />
+</head>
+
+
+<body class="is-preload">
+
+	<!-- Wrapper -->
+	<div id="wrapper">
+
+		<!-- Header -->
+		<header id="header" class="alt style2">
+    <a href="index.html" class="logo"><strong>Visal Dam</strong> <span>Portfolio (WIP)</span></a>
+    <nav>
+        <a href="#menu">Menu</a>
+    </nav>
+</header>
+
+		<!-- Menu -->
+		<nav id="menu">
+    <ul class="links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="portfolio-about.html">About</a></li>
+        <li><a href="portfolio-selected_projects.html">Selected Projects</a></li>
+        <li><a href="landing.html">Publications</a></li>
+        <li><a href="landing.html">Awards</a></li>
+        <li><a href="landing.html">Other</a></li>
+    </ul>
+    <ul class="actions stacked">
+        <li><a href="#contact" class="button fit">Contact</a></li>
+    </ul>
+</nav>
+
+		<!-- Banner (Hidden) -->
+		<section id="banner" style="display:none;"></section>
+
+		<!-- Main -->
+		<div id="main" class="alt">
+
+			<!-- One -->
+			<section id="one">
+				<div class="inner">
+					<header class="major">
+						<h1>Policy Deployment Engine</h1>
+						<p>March - September 2025</p>
+					</header>
+					<figure>
+						<span class="image main"><img src="images/pde_fig-policy.png" alt="" />
+							<figcaption>Figure 1: Simple security policy.</figcaption>
+						</span>
+					</figure>
+					<p>
+						This group project was part of my university's capstone program. Our goal with the Policy
+						Deployment Engine (PDE) is
+						to audit cloud configurations prior to deployment to check for compliance. A series of policies
+						are authored and act as the "gateway"
+						to facilitate this.
+						Our project is the first of its kind at Deakin
+						University, initially aimed at GCP services.
+					</p>
+
+					<p>View the project on <a href="https://github.com/Hardhat-Enterprises/Policy-Deployment-Engine"
+							target="_blank">GitHub</a>↗!</p>
+
+					<h2>Project Summary</h2>
+
+					<h3>Background</h3>
+					<p>The Cloud is the backbone of modern organizations. Repeating cloud configurations for different
+						resources manually quickly becomes difficult, leading to the idea of Infrastructure-as-Code
+						(IAC). Frameworks such as <a href="https://www.terraform.io/" target="_blank">Terraform</a>↗
+						enable cloud configurations to be expressed as code, facilitating scalability.
+					</p>
+
+					<p>However, managing and auditing different cloud plans take time, so the initial problem is
+						still present. Manual audits can also introduce human error. Hence, the PDE operates between
+						what is planned and what is deployed, scanning resources with associated security policies. The
+						declarative language <a href="https://www.openpolicyagent.org/docs/policy-language"
+							target="_blank">Rego</a>↗, developed as the main query language in the <a
+							href="https://www.openpolicyagent.org/" target="_blank">Open Policy Agent
+						(OPA)</a>↗, is chosen to achieve this. After assessing
+						their assigned service and resources, members design their policies using our development
+						framework, and evaluate their correctness by scanning compliant and non-compliant Terraform
+						configurations.</p>
+
+					<p>For
+						example, a storage bucket resource should have the "force_delete" option disabled by default to
+						prevent accidentally data deletion. Though a simple example, when applied to different
+						resources, the PDE quickly becomes a powerful compliance-enforcing tool for cloud environments
+						via its library of security policies.</p>
+
+					<h3>Policy Development Framework (helpers.rego)</h3>
+					<p>A big problem stems from standardization. With 30 (and later, 60) members, how do we ensure that
+						policies are structured the same way project-wide? Without standardization, the following issues
+						arise: <br />
+						- inconsistent naming convention <br />
+						- lack of compatibility <br />
+						- difficulty in understanding or maintaining another person’s policy <br />
+						- duplicated logic across files <br />
+						- increased review time and confusion. <br />
+					</p>
+					<p>Worse still, each member would need to be well-versed in Rego to implement needed functions. To
+						address these concerns, I developed the helpers.rego, a suite of functions to aid in developing
+						policies; i.e.,
+						it is our project's custom library for policy development. Working and maintaining the
+						codebase alongside another lead,
+						the helpers.rego supports policy development that requires: white/blacklisting, range checks,
+						pattern checks, IF-logic, and AND-logic. Most importantly, members only need to focus on the
+						security-aspect
+						of the project, i.e., accessing their assigned GCP service and its resources, with the
+						nitty-gritty of Rego left
+						to the development team.
+						I also standardized the project's current templates and conventions to do with file and folder
+						structuring.
+					</p>
+
+					<p>See the below for more information about the helpers.rego, namely the documentation (<a
+							href="https://hardhat-enterprises.github.io/Policy-Deployment-Engine/docs/gcp/helpers/helpers">reflected</a>↗)
+						and raw source code.</p>
+					<section id="helpers">
+						<div class="inner">
+							<div class="row">
+								<div class="col-6 col-12-small">
+									<iframe
+										src="https://hardhat-enterprises.github.io/Policy-Deployment-Engine/docs/gcp/helpers/helpers"
+										width="100%" height="600" style="border:1px solid #ffffff;">
+										Your browser does not support iframes. You can access the documentation <a
+											href="https://hardhat-enterprises.github.io/Policy-Deployment-Engine/docs/gcp/helpers/helpers"
+											target="_blank">here</a> instead.
+									</iframe>
+								</div>
+								<div class="col-6 col-12-small">
+									<iframe src="others/project-pde-helpers.html" width="100%" height="600px"
+										style="border:1px solid #ffffff;">
+										Your browser does not support iframes.
+									</iframe>
+								</div>
+							</div>
+						</div>
+					</section>
+
+
+				</div>
+			</section>
+
+		</div>
+
+		<!-- Footer -->
+		<!-- Contact -->
+<section id="contact">
+  <div class="inner">
+    <section>
+      <h2>Contact</h2>
+      <div data-youform-embed data-form='qtdfjvuz' data-width='100%' data-height='750px'></div>
+    </section>
+    <section class="split">
+      <section>
+        <div class="contact-method">
+          <span class="icon solid alt fa-envelope"></span>
+          <h3>Email</h3>
+          <a href="mailto:visal.dam@deakin.edu.au">visal.dam@deakin.edu.au</a>
+        </div>
+      </section>
+      <section>
+        <div class="contact-method">
+          <span class="icon brands alt fa-linkedin-in"></span>
+          <h3>LinkedIn</h3>
+          <span><a href="https://linkedin.com/in/visal-dam" target="_blank">linkedin.com/in/visal-dam</a>↗</span>
+        </div>
+      </section>
+      <section>
+        <div class="contact-method">
+          <span class="icon solid alt fa-home"></span>
+          <h3>Address</h3>
+          <span>Melbourne, Victoria <br />
+            Australia</span>
+        </div>
+      </section>
+    </section>
+  </div>
+</section>
+
+<footer id="footer">
+  <div class="inner">
+    <ul class="icons">
+      <li><a href="https://github.com/jerryd10" target="_blank" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+      <li><a href="https://linkedin.com/in/visal-dam" target="_blank" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+      <li><a href="https://experts.deakin.edu.au/65474-visal-dam" target="_blank" class="icon solid alt fa-user"><span class="label">Staff</span></a></li>
+      <li><a href="https://orcid.org/0009-0006-3449-3167" target="_blank" class="icon brands alt fa-orcid"><span class="label">ORCID</span></a></li>
+    </ul>
+    <ul class="copyright">
+      <li>© 2025 Visal Dam</li>
+      <li>Design adapted from: <a href="https://html5up.net" target="_blank">HTML5 UP</a>↗</li>
+    </ul>
+  </div>
+</footer>
+
+	</div>
+
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js" defer></script>
+<script src="assets/js/jquery.scrolly.min.js" defer></script>
+<script src="assets/js/jquery.scrollex.min.js" defer></script>
+<script src="assets/js/browser.min.js" defer></script>
+<script src="assets/js/breakpoints.min.js" defer></script>
+<script src="assets/js/util.js" defer></script>
+<script src="assets/js/main.js" defer></script>
+<!--contact form (YouForm)-->
+<script src="https://app.youform.com/embed.js" defer></script>
+
+
+</body>
+
+</html>
