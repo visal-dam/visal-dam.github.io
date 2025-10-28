@@ -141,7 +141,7 @@
 
 								<div id="info-3" class="info-section">
 									<h2>Clubs & Societies</h2>
-									
+
 									<span class="image main"><img src="images/duca_presenting_1.jpeg" alt="" />
 									</span>
 									<p>Collaborated with peers on a cybersecurity research initiative, exploring
@@ -241,7 +241,6 @@
 <script src="https://app.youform.com/embed.js" defer></script>
 	<script>
 		const swiper = new Swiper(".mySwiper", {
-			slidesPerView: 2,
 			spaceBetween: 20,
 			loop: true,
 			pagination: {
@@ -258,6 +257,14 @@
 			},
 			speed: 3000,
 			freeMode: false,
+			breakpoints: {
+				768: {
+					slidesPerView: 1 // i..e., for screens <= 768px (mobile), show 1 slide
+				}, 
+				1200: { 
+					slidesPerView: 3 //large screens
+				}  
+			}
 		});
 
 		// show info
