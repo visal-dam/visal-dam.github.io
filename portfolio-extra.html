@@ -13,13 +13,6 @@ title: Extracurriculars | Visal Dam
 <!-- Head -->
 {% include head.html %}
 
-<!-- Swiper CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-
-<!-- Swiper JS -->
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
-
 <body class="is-preload">
 
 	<!-- Wrapper -->
@@ -65,7 +58,7 @@ title: Extracurriculars | Visal Dam
 											<img src="images/wam_1.jpeg" alt="" />
 											<div class="info">
 												<h4>Volunteering</h4>
-												<p>...</p>
+												<p></p>
 											</div>
 										</div>
 
@@ -73,7 +66,7 @@ title: Extracurriculars | Visal Dam
 											<img src="images/mm_2.jpeg" alt="" />
 											<div class="info">
 												<h4>Peer Mentoring</h4>
-												<p>...</p>
+												<p></p>
 											</div>
 										</div>
 
@@ -81,7 +74,7 @@ title: Extracurriculars | Visal Dam
 											<img src="images/duca_stall.jpeg" alt="" />
 											<div class="info">
 												<h4>Clubs & Societies</h4>
-												<p>...</p>
+												<p></p>
 											</div>
 										</div>
 
@@ -89,7 +82,7 @@ title: Extracurriculars | Visal Dam
 											<img src="images/deakin_cyber_presenting.png" alt="" />
 											<div class="info">
 												<h4>Professional Memberships</h4>
-												<p>...</p>
+												<p></p>
 											</div>
 										</div>
 									</div>
@@ -97,9 +90,36 @@ title: Extracurriculars | Visal Dam
 								<!-- HIDDEN info sections -->
 								<div id="info-1" class="info-section">
 									<h2>Volunteering</h2>
-									<span class="image main"><img src="images/wam_2.jpeg" alt="" />
-									</span>
-									<p>...</p>
+									<div class="swiper mySwiper">
+										<div class="swiper-wrapper">
+											<div class="swiper-slide">
+												<img src="images/wam_2.jpeg" alt="" style="border-radius: 1em" onclick="expandImg(this)"/>
+											</div>
+											<div class="swiper-slide">
+												<img src="images/wam_3.jpeg" alt="" style="border-radius: 1em" onclick="expandImg(this)"/>
+											</div>
+											<div class="swiper-slide">
+												<img src="images/wam_4.jpeg" alt="" style="border-radius: 1em" onclick="expandImg(this)"/>
+											</div>
+											<div class="swiper-slide">
+												<img src="images/wam_5.jpg" alt="" style="border-radius: 1em" onclick="expandImg(this)"/>
+											</div>
+										</div>
+									</div>
+									<h3>With A Mission</h3>
+
+									<p>
+										I am the head student volunteer for a biweekly food drive, operated by With A
+										Mission, at Deakin Residential Services. We distribute free meals and grocery
+										items to student residents. As the head volunteer, I oversee
+										the collection, storage, display, and distribution of donated items, ensuring
+										smooth operations throughout each event. I also coordinate with the organizers
+										and fellow volunteers to manage logistics, maintain food safety standards, and
+										create an inclusive, supportive environment for all participants. Together, our
+										team caters to approximately <strong>80 to 120</strong> students every two
+										weeks, helping to reduce
+										food insecurity and foster a stronger residential community.
+									</p>
 								</div>
 
 								<div id="info-2" class="info-section">
@@ -108,7 +128,17 @@ title: Extracurriculars | Visal Dam
 									<span class="image main"><img src="images/mm_4.jpeg" alt="" />
 									</span>
 
-									<p>...
+									<h3>Maths & Writing Mentor</h3>
+
+									<p>
+										As a Maths and (later on) Writing Mentor, I provide academic support and
+										guidance to other students concerning mathematics and academic writing concerns,
+										respectively. Having conducted over <strong>70+</strong> one-on-one sessions,
+										this role has strengthened my ability to explain and break down complex concepts
+										clearly, tailor learning approaches to individual needs, and foster students'
+										confidence and independence in their studies. Through ongoing mentoring, I have
+										developed strong interpersonal and communication skills while contributing to
+										the overall academic success of the student community.
 									</p>
 								</div>
 
@@ -117,7 +147,34 @@ title: Extracurriculars | Visal Dam
 
 									<span class="image main"><img src="images/duca_presenting_1.jpeg" alt="" />
 									</span>
-									<p>...</p>
+
+									<h3>Deakin University Cybersecurity Association (DUCA)</h3>
+
+									<p>
+										As part of the DUCA committee, I played a key role in the coordination, setup,
+										and logistics of on-campus events. I also primarily managed the club's support
+										from
+										<strong>RedBull Australia</strong>, overseeing the collection, storage,
+										transfer, and
+										distribution of complementary RedBull to our members during our events. This
+										role strengthened my organizational and teamwork skills while ensuring that each
+										event ran smoothly and maintained strong sponsor relationships.
+									</p>
+									<p>
+										As part of our events, I have been a speaker for two important Cybersecurity
+										talks: one focused on Cybersecurity certifications and career pathways, and
+										another discussing the 2024 Australian Cyber Bill and its implications for
+										professionals and students. These experiences allowed me to share insights,
+										engage with peers on emerging cybersecurity issues, and contribute to raising
+										awareness within the student community.
+									</p>
+									<p>
+										Finally, I also led our club stalls during the Orientation Weeks of T1 and T2
+										2025, overseeing the secure storage and display of critical and expensive
+										electrical IT equipment. I also introduced a Cybersecurity-themed trivia wheel
+										and demo of live malware (contained within a VM) to drive engagement and foster
+										curiosity among stall visitors. I also designed the club's current tablecloth.
+									</p>
 								</div>
 
 								<div id="info-4" class="info-section">
@@ -128,6 +185,10 @@ title: Extracurriculars | Visal Dam
 
 									<h3>Deakin IT Student Academy</h3>
 									<p>2025</p>
+									<p>Memberships offered only to top-performing students within the School of IT.
+										Invite-only. Please refer to <a href="https://blogs.deakin.edu.au/itstudentacademy/members/"
+											target="_blank">here</a>↗ for more information.</p>
+
 									<h3>Australian Computer Society</h3>
 									<p>2025</p>
 								</div>
@@ -145,111 +206,7 @@ title: Extracurriculars | Visal Dam
 
 	<!-- Scripts -->
 	{% include scripts.html %}
-	<script>
-		const swiper = new Swiper(".mySwiper", {
-			spaceBetween: 20,
-			loop: true,
-			pagination: {
-				el: ".swiper-pagination",
-				clickable: true,
-			},
-			navigation: {
-				nextEl: ".swiper-button-next",
-				prevEl: ".swiper-button-prev"
-			},
-			autoplay: {
-				delay: 2000,
-				disableOnInteraction: false,
-			},
-			speed: 3000,
-			freeMode: true,
-			freeModeMomentum: true,
-			freeModeMomentumRatio: 0.8,
-			breakpoints: {
-				768: {
-					slidesPerView: 1 // i..e., for screens <= 768px (mobile), show 1 slide
-				}, 
-				1200: { 
-					slidesPerView: 3 //large screens
-				}  
-			}
-		});
-
-		// show info
-		function toggleInfo(id) {
-			document.querySelectorAll('.info-section').forEach(sec => {
-				sec.classList.toggle('active', sec.id === 'info-' + id && !sec.classList.contains('active'));
-			});
-		}
-	</script>
-
-	<style>
-		.swiper-slide {
-			position: relative;
-			cursor: pointer;
-			overflow: hidden;
-			transition: all 0.3s ease;
-			border-radius: 1em;
-			padding-top: 35px;
-			padding-bottom: 35px;
-			width: auto;
-			height: 400px;
-		}
-
-		.swiper-slide img {
-			width: 100%;
-			height: 100%;
-			object-fit: cover;
-			border-radius: 1em 1em 0 0;
-		}
-
-		/* Show info on hover */
-
-		.swiper-slide .info {
-			display: block;
-			position: absolute;
-			bottom: 35px;
-			background: rgba(142, 169, 232, 0.75);
-			/* #8ea9e8; */
-			color: #ffffff;
-			width: 100%;
-			transform: translateY(100%);
-			transition: transform 0.3s ease;
-		}
-
-		.swiper-slide .info h4 {
-			text-align: center;
-		}
-
-		.swiper-slide .info p {
-			margin: 0;
-			padding: 5px 10px;
-		}
-
-		.swiper-slide:hover {
-			transform: scale(1.05);
-		}
-
-		.swiper-slide:hover .info {
-			animation: fadeIn 0.4s ease-in-out;
-			transform: translateY(0);
-		}
-
-		/* Info sections */
-
-		.info-section {
-			display: none;
-			margin-top: 2em;
-			padding: 1.5em;
-			border-radius: 10px;
-			transition: all 0.3s ease-in-out;
-		}
-
-		.info-section.active {
-			display: block;
-			animation: fadeIn 0.4s ease-in-out;
-		}
-	</style>
+	{% include swiper-slides.html %}
 
 </body>
 
