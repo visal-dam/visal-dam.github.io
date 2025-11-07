@@ -1,0 +1,154 @@
+---
+title: Other Projects | Visal Dam
+---
+
+<!DOCTYPE HTML>
+<!--
+	Forty by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<!-- Head -->
+{% include head.html %}
+
+<body class="is-preload">
+
+	<!-- Wrapper -->
+	<div id="wrapper">
+
+		<!-- Header -->
+		{% include header.html %}
+
+		<!-- Menu -->
+		{% include menu.html %}
+
+		<!-- Banner (Hidden) -->
+		<section id="banner" class="style5">
+			<div class="inner">
+				<span class="image">
+					<img src="images/contact.jpeg" alt="" loading="lazy" />
+				</span>
+				<header class="major">
+					<h1>Other Projects</h1>
+				</header>
+				<div class="content">
+					<p>Some other of my technical work.</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- Main -->
+		<div id="main" class="alt">
+
+			<!-- One -->
+			<section id="one">
+				<div class="inner">
+					<!-- Project R-->
+					<div class="row">
+						<div class="col-4 col-12-small">
+							<span class="image main"><img src="images/web_vulns.png" alt="" />
+							</span>
+						</div>
+						<div class="col-8 col-12-small">
+							<h2>Demonstrating Web Vulnerabilities</h2>
+							<p>
+								This project explores how vulnerabilities arise in web applications due to design
+								oversights and misconfigurations (which are intentionally baked into the source code).
+								After,
+								these vulnerabilities are discovered through
+								the use of static and dynamic analysis tools, namely SonarQube and OWASP ZAP,
+								respectively. Finally, defensive and prevention mechanisms are put in place in to
+								prevent the vulnerabilities. A simple web application (HTML + Js) was used.
+							</p>
+						</div>
+					</div>
+					<!-- Project L -->
+					<div class="row">
+						<div class="col-8 col-12-small">
+							<h2>SSL Certificate Validity Predictor</h2>
+							<p>
+								This project uses Machine Learning to predict SSL certificate validity based on
+								extracted features, such as the issuer, chosen public key algorithm and size, chosen
+								signature algorithm, and associated domains (SAN). The certificates were gathered via
+								simple connections to a large list of random websites using Python. The RandomForest
+								classifier was trained and evaluated, achieving an accuracy score of 0.978.
+							</p>
+						</div>
+						<div class="col-4 col-12-small">
+							<span class="image main"><img src="images/ssl_certs.png" alt="" />
+							</span>
+						</div>
+					</div>
+					<!-- Project R-->
+					<div class="row">
+						<div class="col-4 col-12-small">
+							<span class="image main"><img src="images/cisco.png" alt="" />
+							</span>
+						</div>
+						<div class="col-8 col-12-small">
+							<h2>Pythonic Ping Application</h2>
+							<p>
+								A custom program in Python is developed to implement the ping operation without using
+								any direct pinging functions. The project's barebones nature mainly stems from the
+								design and
+								combination of different checksums.
+							</p>
+						</div>
+					</div>
+					<!-- Project L -->
+					<div class="row">
+						<div class="col-8 col-12-small">
+							<h2>ARP Poisoning Detector</h2>
+							<p>
+								A simple Pythonic scripts listens for ARP requests and responses, updating an internal
+								table accordingly. When a new MAC entry is detected for an already-known device, the
+								detection mechanism sends an ARP request to that device based on its last known IP
+								address. If, after some time, the received ARP response contains the last known MAC
+								address, then the
+								previously received ARP response must have been spoofed.
+							</p>
+						</div>
+						<div class="col-4 col-12-small">
+							<span class="image main"><img src="images/arp.png" alt="" />
+							</span>
+						</div>
+					</div>
+					<!-- Project R-->
+					<div class="row">
+						<div class="col-8 col-12-small">
+							<span class="image main"><img src="images/telnet_poc.jpg" alt="" />
+							</span>
+						</div>
+						<div class="col-4 col-12-small">
+							<h2>Simple TELNET Hijacker</h2>
+							<p>
+								This attack first involves an ARP jam, wherein the man-in-the-middle (MITM) machine
+								sends its own MAC address as the destination MAC to the target client and server
+								machines. The machine is configured to forward received packets meant for another MAC
+								address (i.e., peer-to-peer). Next, a script sniffs the traffic, then modifies and
+								injects its own payload into the packets. The SEQ and ACK values are processed in a way
+								that the target client and server machines expects of a normal TELNET session; i.e.,
+								neither realizes that there was a MITM between them all this time.
+							</p>
+						</div>
+					</div>
+
+				</div>
+			</section>
+
+		</div>
+
+		<!-- Footer -->
+		{% include footer.html %}
+
+	</div>
+
+	<!-- Scripts -->
+	<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+	{% include scripts.html %}
+
+</body>
+
+</html>
